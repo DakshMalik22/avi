@@ -19,13 +19,13 @@ public class ques13 {
             if (arr[mid] == m) {
                 return mid; // Target value found
             } else if (arr[mid] < m) {
-                left = mid + 1; // Adjust the search range to the right
+                left = mid + 1;
             } else {
-                right = mid - 1; // Adjust the search range to the left
+                right = mid - 1;
             }
         }
 
-        // If the target is not found, 'left' will be the position to insert the target
+      
         return left;
     }
 }
