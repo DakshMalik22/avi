@@ -14,12 +14,12 @@ public class ques15 {
     }
 
     private static int countWays(int[] arr, int target, int currentIndex, int currentSum) {
-        // Base case: If we have reached the end of the array
+       
         if (currentIndex == arr.length) {
             return (currentSum == target) ? 1 : 0;
         }
 
-        // Recursive case: Add and subtract the current element and explore all possibilities
+        
         int waysToAdd = countWays(arr, target, currentIndex + 1, currentSum + arr[currentIndex]);
         int waysToSubtract = countWays(arr, target, currentIndex + 1, currentSum - arr[currentIndex]);
 
