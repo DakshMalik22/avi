@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class ques2 {
     public static void main(String[] args) {
-        // Create an ArrayList of words
+     
         ArrayList<String> wordList = new ArrayList<>();
         wordList.add("cats");
         wordList.add("dog");
@@ -12,10 +12,10 @@ public class ques2 {
         wordList.add("and");
         wordList.add("cat");
 
-        // Define the input string
+        
         String inputString = "catsandog";
 
-        // Print the result of the function call
+       
         System.out.println(ans(wordList, inputString));
     }
 
