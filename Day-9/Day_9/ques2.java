@@ -16,17 +16,17 @@ public class ques2 {
         String inputString = "catsandog";
 
        
-        System.out.println(ans(wordList, inputString));
+        System.out.println(Ans(wordList, inputString));
     }
 
     // Function to determine if inputString can be segmented into words from wordList
-    private static boolean ans(ArrayList<String> wordList, String inputString) {
-        // If the wordList contains the entire inputString, return true
+    private static boolean Ans(ArrayList<String> wordList, String inputString) {
+        // If the wordList contains the entire inputString, returning true
         if (wordList.contains(inputString)) {
             return true;
         }
 
-        // Iterate through the characters of inputString
+        // Iterating through the characters of inputString
         for (int i = 0; i < inputString.length(); i++) {
             // Get the substring from the beginning up to index i
             String check = inputString.substring(0, i);
@@ -34,10 +34,10 @@ public class ques2 {
             // If the wordList contains the substring
             if (wordList.contains(check)) {
                 // Recursively call the function with the remaining substring
-                return ans(wordList, inputString.substring(i));
+                return Ans(wordList, inputString.substring(i));
             }
         }
-        // If no segmentation is possible, return false
+        // If no segmentation is possible, returning false
         return false;
     }
 }
