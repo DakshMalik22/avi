@@ -27,7 +27,7 @@ public class ques1 {
             map.get(word).add(s);
         }
 
-        // Iterating through the values of the map (ArrayLists of anagrams) and print them
+        // Iterating through the values of the arraylist and printing them
         for(ArrayList<String> s: map.values()) {
             System.out.print(s);
         }
