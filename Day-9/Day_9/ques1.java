@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 public class ques1 {
     public static void main(String[] args) {
-        // Input array of strings
+       
         String[] arr = {"eat", "tea", "tan", "ate", "nat", "bat"};
 
         // HashMap to store sorted string as key and corresponding anagrams as values
