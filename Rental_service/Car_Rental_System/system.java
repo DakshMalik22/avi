@@ -64,7 +64,7 @@ class Customer {
         this.rentedVehicles = new HashMap<>();
     }
 
-    // Getters
+   
     public String getName() {
         return name;
     }
@@ -84,46 +84,63 @@ class Customer {
     }
 }
 
-// RentalAgency class
 class RentalAgency {
+
     private List<Vehicle> availableVehicles;
+  
     private Map<Customer, Map<Integer, Vehicle>> rentedVehiclesMap;
 
-    // Constructor
+
     public RentalAgency() {
+        // Initialize the availableVehicles list and rentedVehiclesMap
         this.availableVehicles = new ArrayList<>();
         this.rentedVehiclesMap = new HashMap<>();
     }
 
     // Method to add a vehicle
     public void addVehicle(Vehicle vehicle) {
+        // Add the vehicle to the available vehicles list
         availableVehicles.add(vehicle);
     }
 
     // Method to rent a vehicle
     public void rentVehicle(Customer customer, Vehicle vehicle, int days, int vehicleId) {
+        // Checking if the requested vehicle is available for rent
         if (!availableVehicles.contains(vehicle)) {
+            // Throw an exception if the vehicle is not available
             throw new IllegalArgumentException("The requested vehicle is not available for rent.");
         }
+        // Calculating the rental cost for the vehicle
         double cost = vehicle.calculateRentalCost(days);
+        // Printing the rental cost information
         System.out.println("Rental cost for " + vehicle.getMake() + " " + vehicle.getModel() + " for " + days + " days: Rs." + cost);
+        // Rent the vehicle to the customer
         customer.rentVehicle(vehicle, vehicleId);
+        // Remove the rented vehicle from the available vehicles list
         availableVehicles.remove(vehicle);
 
+        // Store the rented vehicle information in the rentedVehiclesMap
         rentedVehiclesMap.putIfAbsent(customer, new HashMap<>());
         rentedVehiclesMap.get(customer).put(vehicleId, vehicle);
     }
 
     // Method to return a vehicle
     public void returnVehicle(Customer customer, int vehicleId) {
+        // Get the rented vehicles map for the customer
         Map<Integer, Vehicle> customerRentedVehicles = rentedVehiclesMap.get(customer);
+        // Check if the customer has rented any vehicles
         if (customerRentedVehicles == null || !customerRentedVehicles.containsKey(vehicleId)) {
+            // Throw an exception if the vehicle with the given ID was not rented by the customer
             throw new IllegalArgumentException("The vehicle with ID " + vehicleId + " was not rented by this customer.");
         }
+        // Return the vehicle
         customer.returnVehicle(vehicleId);
+        // Adding the returned vehicle back to the available vehicles list
         availableVehicles.add(customerRentedVehicles.remove(vehicleId));
+      
         System.out.println("The vehicle with ID " + vehicleId + " has been returned successfully.");
 
+        // Remove the customer from rentedVehiclesMap if they have no more rented vehicles
         if (customerRentedVehicles.isEmpty()) {
             rentedVehiclesMap.remove(customer);
         }
