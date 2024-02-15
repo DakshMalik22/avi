@@ -10,7 +10,7 @@ class BankingSystem {
     // Method to add a bank account to the system
     public void addAccount(BankAccount account) {
         accounts.add(account);
-    }
+    } 
 
     // Method to find a bank account by its account number
     public BankAccount findAccount(int accountNumber) {
