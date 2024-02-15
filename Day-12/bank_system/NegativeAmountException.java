@@ -4,3 +4,4 @@ class NegativeAmountException extends BankException {
         super(message);
     }
 }
+ 
