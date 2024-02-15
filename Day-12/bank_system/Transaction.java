@@ -9,5 +9,5 @@ class Transaction {
         this.transactionId = transactionId;
         this.transactionType = transactionType;
         this.amount = amount;
-    }
+    } 
 }
