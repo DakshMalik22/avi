@@ -6,45 +6,48 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class FileHandlingSystem {
-    private List<Student> students;
-    private String filename;
+    private List<Student> students; // List to store student objects
+    private String filename; // File name to serialize/deserialize
 
+    // Constructor to initialize the filename and students list
     public FileHandlingSystem(String filename) {
         this.filename = filename;
-         this.students = new ArrayList<>();
+        this.students = new ArrayList<>();
     }
 
-    public void addStudent(Student student)
-    {
+    // Method to add a student to the students list
+    public void addStudent(Student student) {
         students.add(student);
     }
 
-    public void serializeToFile()
-    {
-        try(ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
-           oos.writeObject(students);
+    // Method to serialize student records to a file
+    public void serializeToFile() {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(filename))) {
+            oos.writeObject(students);
             System.out.println("Student records serialized to " + filename);
         } catch (IOException e) {
             System.out.println("Error serializing student records: " + e.getMessage());
         }
     }
 
-    public void deserializeToFile()
-    {
-        try(ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
-           students = (List<Student>) ois.readObject();
+    // Method to deserialize student records from a file
+    public void deserializeToFile() {
+        try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(filename))) {
+            students = (List<Student>) ois.readObject();
             System.out.println("Student records Deserialized to " + filename);
         } catch (IOException | ClassNotFoundException e) {
             System.out.println("Error Deserialized student records: " + e.getMessage());
         }
     }
-    public void printStudentDetails(){
-        for (Student student:students)
-        {
+
+    // Method to print details of all students
+    public void printStudentDetails() {
+        for (Student student : students) {
             System.out.println(student);
         }
     }
 
+    // Method to filter and print students with grade >= minGrade
     public void filterStudentsByGrade(double minGrade) {
         List<Student> filteredStudents = students.stream()
                 .filter(student -> student.getGrade() >= minGrade)
@@ -56,6 +59,7 @@ public class FileHandlingSystem {
         }
     }
 
+    // Main method for testing
     public static void main(String[] args) {
         FileHandlingSystem fileHandlingSystem = new FileHandlingSystem("studentDatabase.txt");
 
