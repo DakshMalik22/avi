@@ -3,7 +3,7 @@ package Questions;
 import java.util.Scanner;
 import java.util.Vector;
 
-public class Ques1 {
+public class Calc_move_avg {
     public static void main(String[] args) {
        
         Vector<Integer> vec = new Vector<>();
