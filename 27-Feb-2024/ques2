@@ -1,0 +1,45 @@
+
+
+public class ProductArrayCalculator {
+
+    public static void main(String[] args) {
+        // Given input array
+        long[] nums = {1, 2, 4, 0, 5};
+        int n = nums.length;
+        long[] ans = new long[nums.length]; // Array to store the result
+
+        // Calculate the product of all non-zero elements and count the number of zeros
+        long product = 1;
+        int zeroCount = 0;
+        for (long num : nums) {
+            if (num != 0) {
+                product *= num;
+            } else {
+                zeroCount++;
+            }
+        }
+
+        // Calculate the product array based on zero count
+        for (int i = 0; i < n; i++) {
+            if (zeroCount == 1) {
+                // If there is exactly one zero, set the product to 0 for the zero element, otherwise set it to the product of all non-zero elements
+                if (nums[i] != 0) {
+                    ans[i] = 0;
+                } else {
+                    ans[i] = product;
+                }
+            } else if (zeroCount > 1) {
+                // If there are more than one zero, set the product to 0 for all elements
+                ans[i] = 0;
+            } else {
+                // If there are no zeros, set the product to the total product divided by the element value
+                ans[i] = product / nums[i];
+            }
+        }
+
+        // Print the result array
+        for (long num : ans) {
+            System.out.println(num + " ");
+        }
+    }
+}
