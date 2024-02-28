@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 import java.util.Scanner;
 
-public class q1 {
+public class Wordprocessor {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         
