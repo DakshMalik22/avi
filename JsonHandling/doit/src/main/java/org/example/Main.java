@@ -36,7 +36,7 @@ public class Main {
                 int avg = 0;
                 int totalSum = 0;
                 // Iterate through the JSON array and process each JSON object
-                for (int i = 0; i < jsonArray.length(); i++) {
+                for (int iterator = 0; iterator < jsonArray.length(); iterator++) {
                     JSONObject json = jsonArray.getJSONObject(i);
                     // Now you can access the data using methods like getString(), getInt(), etc.
                     // For example:
@@ -86,7 +86,7 @@ public class Main {
             }
         }
         else {
-            System.out.println("Bye bye");
+            System.out.println("File Not Found");
         }
 
 
