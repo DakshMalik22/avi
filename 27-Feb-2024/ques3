@@ -1,0 +1,59 @@
+public class WildcardPatternMatching {
+
+    // Function to solve wildcard pattern matching recursively
+    static int solve(String pattern, String str, int i, int j, int dp[][]) {
+        // Base cases
+
+        // If both indices are less than 0, it means we have traversed all characters and found matching elements only
+        if (i < 0 && j < 0) return 1;
+
+        // If elements are left in the string array but not in the pattern, then obviously it's not matching
+        else if (i < 0 && j >= 0) return 0;
+
+        // Checking if there are elements left in the pattern but not in the string, then only if they are stars, it's considered a match
+        else if (i >= 0 && j < 0) {
+            for (int ii = i; ii >= 0; ii--) {
+                if (pattern.charAt(ii) != '*') return 0;
+            }
+            return 1;
+        }
+
+        // If the result is already computed, return it from dp array
+        if (dp[i][j] != -1) return dp[i][j];
+
+        // Store the characters in variables for easier comparison
+        char ch1 = pattern.charAt(i);
+        char ch2 = str.charAt(j);
+
+        // If characters are same or one is '?', reduce both indices and continue checking
+        if (ch1 == ch2 || ch1 == '?') return dp[i][j] = solve(pattern, str, i - 1, j - 1, dp);
+
+        // If pattern character is '*', then consider two cases:
+        else if (ch1 == '*') {
+            // Case 1: Do not consider '*', and check if previous characters match
+            // Case 2: Consider '*', and check if previous character in pattern matches with current character in string
+            return dp[i][j] = solve(pattern, str, i - 1, j, dp) | solve(pattern, str, i, j - 1, dp);
+        }
+
+        // If none of the above conditions match, return false
+        else return dp[i][j] = 0;
+    }
+
+    public static void main(String[] args) {
+        String pattern = ""; // Define your pattern
+        String str = ""; // Define your string
+
+        int n = pattern.length();
+        int m = str.length();
+
+        // Create a DP matrix for two changing elements i and j and initialize it with -1
+        int dp[][] = new int[n][m];
+
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) dp[i][j] = -1;
+        }
+
+        // Function call to solve wildcard pattern matching
+        System.out.println(solve(pattern, str, n - 1, m - 1, dp));
+    }
+}
