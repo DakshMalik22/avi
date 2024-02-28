@@ -2,137 +2,159 @@ package atm;
 
 import java.util.*;
 
-//abstract class bank
-public  abstract class Bank {
+// Abstract class representing a bank
+public abstract class Bank {
 
+    // Abstract method to get accounts
     public abstract List<Account> getAccounts();
+
+    // Abstract method to deposit money to an account
     public abstract void deposit(String recipientAccountNumber, double amount) throws AccountNotFoundException;
+
+    // Abstract method to deduct money from an account
     public abstract void deduct(Account userAccount, double amount) throws AccountNotFoundException, InsufficientFundsException;
 }
-//HdFC CLass extending bank
+
+// HDFC class extending Bank
 class HDFC extends Bank {
     private static List<Account> hdfcAccounts = new ArrayList();
-    private String name = "hdfc";
-    //method to add account to hdfc accounts list
+
+    // Method to add account to HDFC accounts list
     public static void addAccount(Account account) {
         hdfcAccounts.add(account);
     }
-    //mehod to get accounts list
+
+    // Method to get accounts list
     @Override
     public List<Account> getAccounts() {
         return hdfcAccounts;
     }
 
-
-    // method to deposit amount
+    // Method to deposit money to an account
     @Override
     public void deposit(String recipientAccountNumber, double amount) throws AccountNotFoundException {
         Account recipientAccount = null;
-        for(Account account :getAccounts())
-            if(account != null && account.getaccountNumber() != null && account.getaccountNumber().equals(recipientAccountNumber))
+        for (Account account : getAccounts()) {
+            if (account != null && account.getaccountNumber() != null && account.getaccountNumber().equals(recipientAccountNumber)) {
                 recipientAccount = account;
-        if(recipientAccount == null)
+                break;
+            }
+        }
+        if (recipientAccount == null) {
             throw new AccountNotFoundException("Account of recipient does not exist");
+        }
         recipientAccount.addBalance(amount);
     }
-    //method to get interest rate
 
-    public double getInterestRate() {
-        return 6.5; // Example specific interest rate
-    }
-
+    // Method to deduct money from an account
     @Override
-    public void deduct(Account userAccount, double amount) throws AccountNotFoundException, InsufficientFundsException{
+    public void deduct(Account userAccount, double amount) throws AccountNotFoundException, InsufficientFundsException {
         Account senderAccount = null;
-        for(Account account :getAccounts())
-            if(account != null && account == userAccount)
+        for (Account account : getAccounts()) {
+            if (account != null && account == userAccount) {
                 senderAccount = account;
-        if(senderAccount == null)
-            throw new AccountNotFoundException("Account of recipient does not exist");
-        senderAccount.deduct(amount, 0.01);
+                break;
+            }
+        }
+        if (senderAccount == null) {
+            throw new AccountNotFoundException("Account of sender does not exist");
+        }
+        senderAccount.deduct(amount, 0.01); // Assuming 1% charge for HDFC
     }
-
 }
 
-//Sbi class extending bank class
+// SBI class extending Bank
 class SBI extends Bank {
     private static List<Account> sbiAccounts = new ArrayList();
-    private String name = "sbi";
-    //method to add account to sbiAccounts list
+
+    // Method to add account to SBI accounts list
     public static void addAccount(Account account) {
         sbiAccounts.add(account);
     }
-    //method to get accounts list
+
+    // Method to get accounts list
     @Override
     public List<Account> getAccounts() {
         return sbiAccounts;
     }
-    //deposits to account
+
+    // Method to deposit money to an account
     @Override
     public void deposit(String recipientAccountNumber, double amount) throws AccountNotFoundException {
         Account recipientAccount = null;
-        for(Account account :getAccounts())
-            if(account != null && account.getaccountNumber() != null && account.getaccountNumber().equals(recipientAccountNumber))
+        for (Account account : getAccounts()) {
+            if (account != null && account.getaccountNumber() != null && account.getaccountNumber().equals(recipientAccountNumber)) {
                 recipientAccount = account;
-        if(recipientAccount == null)
+                break;
+            }
+        }
+        if (recipientAccount == null) {
             throw new AccountNotFoundException("Account of recipient does not exist");
+        }
         recipientAccount.addBalance(amount);
+    }
 
-    }
-    // method to get interest rate
-    public double getInterestRate() {
-        return 6.5; // Example specific interest rate
-    }
+    // Method to deduct money from an account
     @Override
-    public void deduct(Account userAccount, double amount) throws AccountNotFoundException, InsufficientFundsException, AccountNotFoundException{
+    public void deduct(Account userAccount, double amount) throws AccountNotFoundException, InsufficientFundsException {
         Account senderAccount = null;
-        for(Account account :getAccounts())
-            if(account != null && account == userAccount)
+        for (Account account : getAccounts()) {
+            if (account != null && account == userAccount) {
                 senderAccount = account;
-        if(senderAccount == null)
-            throw new AccountNotFoundException("Account of recipient does not exist");
-        senderAccount.deduct(amount, 0.03);
+                break;
+            }
+        }
+        if (senderAccount == null) {
+            throw new AccountNotFoundException("Account of sender does not exist");
+        }
+        senderAccount.deduct(amount, 0.03); // Assuming 3% charge for SBI
     }
-
 }
 
-// ICICI class extending bank class
+// ICICI class extending Bank
 class ICICI extends Bank {
     private static List<Account> iciciAccounts = new ArrayList();
-    private String name = "icici";
-    //method to add account to icici accounts list
+
+    // Method to add account to ICICI accounts list
     public static void addAccount(Account account) {
         iciciAccounts.add(account);
     }
-    //method to deposit
+
+    // Method to get accounts list
+    @Override
+    public List<Account> getAccounts() {
+        return iciciAccounts;
+    }
+
+    // Method to deposit money to an account
     @Override
     public void deposit(String recipientAccountNumber, double amount) throws AccountNotFoundException {
         Account recipientAccount = null;
-        for(Account account :getAccounts())
-            if(account != null && account.getaccountNumber() != null && account.getaccountNumber().equals(recipientAccountNumber))
+        for (Account account : getAccounts()) {
+            if (account != null && account.getaccountNumber() != null && account.getaccountNumber().equals(recipientAccountNumber)) {
                 recipientAccount = account;
-        if(recipientAccount == null)
+                break;
+            }
+        }
+        if (recipientAccount == null) {
             throw new AccountNotFoundException("Account of recipient does not exist");
+        }
         recipientAccount.addBalance(amount);
     }
-    //mehtod to get interest rate
-    public double getInterestRate() {
-        return 6.5; // Example specific interest rate
-    }
-    //method to get accounts list
-    @Override
-    public List<Account> getAccounts(){
-        return iciciAccounts;
-    }
-    @Override
-    public void deduct(Account userAccount, double amount) throws AccountNotFoundException, InsufficientFundsException{
-        Account senderAccount = null;
-        for(Account account :getAccounts())
-            if(account != null && account == userAccount)
-                senderAccount = account;
-        if(senderAccount == null)
-            throw new AccountNotFoundException("Account of recipient does not exist");
-        senderAccount.deduct(amount, 0.02);
-    }
 
+    // Method to deduct money from an account
+    @Override
+    public void deduct(Account userAccount, double amount) throws AccountNotFoundException, InsufficientFundsException {
+        Account senderAccount = null;
+        for (Account account : getAccounts()) {
+            if (account != null && account == userAccount) {
+                senderAccount = account;
+                break;
+            }
+        }
+        if (senderAccount == null) {
+            throw new AccountNotFoundException("Account of sender does not exist");
+        }
+        senderAccount.deduct(amount, 0.02); // Assuming 2% charge for ICICI
+    }
 }
