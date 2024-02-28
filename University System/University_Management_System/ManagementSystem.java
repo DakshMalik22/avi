@@ -2,7 +2,7 @@ package University_Management_System;
 
 import java.util.*;
 
-public class system1 {
+public class ManagementSystem {
     public static void main(String[] args) {
         // Create an instance of the University
         University university = new University();
