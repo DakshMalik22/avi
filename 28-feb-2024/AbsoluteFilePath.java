@@ -1,10 +1,19 @@
 import java.util.Scanner;
 import java.util.Stack;
 
+class InvalidPathException extends Exception {
+    public InvalidPathException(String message) {
+        super(message);
+    }
+}
+
 public class AbsoluteFilePath {
 
+    public String simplifyPath(String A) throws InvalidPathException {
+        if (A == null || A.isEmpty()) {
+            throw new InvalidPathException("Input path is empty or null.");
+        }
 
-    public String simplifyPath(String A) {
         String[] directories = A.split("/");
         Stack<String> stack = new Stack<>();
 
@@ -32,17 +41,21 @@ public class AbsoluteFilePath {
         return simplifiedPath.toString();
     }
 
-        public static void main(String[] args) {
+    public static void main(String[] args) {
 
-            //taking Path input
-            Scanner sc=new Scanner(System.in);
-            System.out.println("Enter the Path String : ");
-            String path=sc.nextLine();
+        // Taking Path input
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Enter the Path String : ");
+        String path = sc.nextLine();
 
-            //creating an object of AbsoluteFilePath class
-            AbsoluteFilePath solution = new AbsoluteFilePath();
+        // Creating an object of AbsoluteFilePath class
+        AbsoluteFilePath solution = new AbsoluteFilePath();
 
-            //calling the function with the help of class to return simplified path
+        try {
+            // Calling the function with the help of class to return simplified path
             System.out.println(solution.simplifyPath(path));
+        } catch (InvalidPathException e) {
+            System.out.println("Error: " + e.getMessage());
         }
+    }
 }
