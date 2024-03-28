@@ -6,9 +6,9 @@ import java.util.Scanner;
 public class Main{
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
-        final String patientLoginFilePath = "G:\\java\\weeklyasignment\\OnlineMedicalSystem\\files\\patientsLoginFile.csv";
-        final String adminLoginFilePath = "G:\\java\\weeklyasignment\\OnlineMedicalSystem\\files\\adminLoginFile.csv";
-        final String doctorLoginFilePath = "G:\\java\\weeklyasignment\\OnlineMedicalSystem\\files\\doctorsLoginFile.csv";
+       final String patientLoginFilePath = "C:\\Users\\ASUS\\OneDrive\\Desktop\\OnlineMedicalSystem\\OnlineMedicalSystem\\files\\patientsLoginFile.csv";
+        final String adminLoginFilePath = "C:\\Users\\ASUS\\OneDrive\\Desktop\\OnlineMedicalSystem\\OnlineMedicalSystem\\files\\adminLoginFile.csv";
+        final String doctorLoginFilePath = "C:\\Users\\ASUS\\OneDrive\\Desktop\\OnlineMedicalSystem\\OnlineMedicalSystem\\files\\doctorsLoginFile.csv";
 
         Patient patient = null;
         User admin = null;
