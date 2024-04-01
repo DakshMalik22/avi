@@ -1,5 +1,3 @@
-package javaBasics.date_01_04_24;
-
 import java.util.*;
 
 public class DeleteMiddleElement {
