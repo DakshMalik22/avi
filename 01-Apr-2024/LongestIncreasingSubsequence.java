@@ -1,6 +1,4 @@
 
-package javaBasics.date_01_04_24;
-
 import java.io.IOException;
 
 public class LongestIncreasingSubsequence
