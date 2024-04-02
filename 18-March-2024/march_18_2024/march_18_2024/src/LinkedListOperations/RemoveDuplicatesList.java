@@ -1,54 +1,64 @@
-package LinkedListOperations;
-
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 
-class ListNode{
-    int val;
-    ListNode next;
+class ListNode {
+    int data; // Represents the data stored in the node
+    ListNode nextNode; // Reference to the next node in the linked list
 
-    ListNode(){}
-    ListNode(int val){
-        this.val = val;
+    ListNode() {
+    }
+
+    ListNode(int data) {
+        this.data = data;
     }
 }
 
-class RemoveDuplicatesList{
-    public static void main(String[] args){
+public class RemoveDuplicatesLinkedList {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter size of list 1");
-        int sizeOfList1 = scanner.nextInt();
-        ListNode head1 = new ListNode();
-        ListNode list1 = head1;
-        System.out.println("enter "+ sizeOfList1+" elements of list 1");
-        for(int node = 0; node < sizeOfList1; node++){
-            list1.next = new ListNode(scanner.nextInt());
-            list1 = list1.next;
+        System.out.println("Enter size of the linked list:");
+        int sizeOfList = scanner.nextInt();
+        
+        // Creating a dummy node to hold the head of the linked list
+        ListNode head = new ListNode();
+        ListNode current = head; // Pointer to traverse the linked list
+        
+        // Input elements into the linked list
+        System.out.println("Enter " + sizeOfList + " elements of the linked list:");
+        for (int i = 0; i < sizeOfList; i++) {
+            current.nextNode = new ListNode(scanner.nextInt());
+            current = current.nextNode; // Move the pointer to the newly added node
         }
-        ListNode resultList = duplicateRemove(head1.next);
+        
+        // Call the function to remove duplicates from the linked list
+        ListNode resultList = removeDuplicates(head.nextNode);
+        
+        // Print the resulting linked list after removing duplicates
         System.out.println("Result list:");
-        while(resultList != null){
-            System.out.println(resultList.val);
-            resultList = resultList.next;
+        while (resultList != null) {
+            System.out.println(resultList.data);
+            resultList = resultList.nextNode;
         }
     }
 
-    public static ListNode duplicateRemove(ListNode head){
-        Set<Integer> listValues = new HashSet<Integer>();
-        ListNode result = new ListNode();
-        ListNode curr = result;
-        while(head != null){
-
-            if(!listValues.contains(head.val)) {
-                curr.next = new ListNode((head.val));
-                curr = curr.next;
+    // Function to remove duplicates from a linked list
+    public static ListNode removeDuplicates(ListNode head) {
+        Set<Integer> seenValues = new HashSet<>(); // Set to keep track of seen values
+        ListNode resultHead = new ListNode(); // Dummy node for the resulting linked list
+        ListNode currentResult = resultHead; // Pointer to traverse the resulting linked list
+        
+        // Traverse the original linked list
+        while (head != null) {
+            // If the value is not seen before, add it to the resulting linked list
+            if (!seenValues.contains(head.data)) {
+                currentResult.nextNode = new ListNode(head.data);
+                currentResult = currentResult.nextNode; // Move the pointer
+                seenValues.add(head.data); // Add the value to the set of seen values
             }
-            listValues.add(head.val);
-            head = head.next;
-
+            head = head.nextNode; // Move to the next node in the original linked list
         }
-        return result.next;
+        return resultHead.nextNode; // Return the head of the resulting linked list
     }
-
 }
+
