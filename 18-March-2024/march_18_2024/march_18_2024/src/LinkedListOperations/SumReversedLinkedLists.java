@@ -1,60 +1,71 @@
-package LinkedListOperations;
-
 import java.util.Scanner;
 
-class SumReversedLinkedLists{
-    public static void main(String[] args){
+class SumReversedLinkedLists {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        //list1 input
-        System.out.println("Enter size of list 1");
-        int sizeOfList1 = scanner.nextInt();
-        ListNode head1 = new ListNode();
-        ListNode list1 = head1;
-        System.out.println("enter "+ sizeOfList1+" elements of list 1");
-        for(int node = 0; node < sizeOfList1; node++){
-            list1.next = new ListNode(scanner.nextInt());
-            list1 = list1.next;
-        }
 
-        //list2 input
-        System.out.println("Enter size of list 2");
-        int sizeOfList2 = scanner.nextInt();
-        ListNode head2 = new ListNode();
-        ListNode list2 = head2;
-        System.out.println("enter "+sizeOfList2+" elements of list 1");
-        for(int node = 0; node < sizeOfList2; node++){
-            list2.next = new ListNode(scanner.nextInt());
-            list2 = list2.next;
-        }
+        // Get size and elements of the first list
+        int sizeOfList1 = getUserInput(scanner, "Enter size of the first list:");
+        ListNode head1 = createList(scanner, sizeOfList1, "Enter elements of the first list:");
 
-        ListNode resultList =  addLists(head1.next, head2.next);
+        // Get size and elements of the second list
+        int sizeOfList2 = getUserInput(scanner, "Enter size of the second list:");
+        ListNode head2 = createList(scanner, sizeOfList2, "Enter elements of the second list:");
+
+        // Add the reversed lists and print the result
+        ListNode resultList = addReversedLists(head1.next, head2.next);
         System.out.println("Result:");
-        while(resultList != null){
-            System.out.print(resultList.val);
-            resultList = resultList.next;
+        printList(resultList);
+    }
+
+    // Function to get user input
+    public static int getUserInput(Scanner scanner, String message) {
+        System.out.println(message);
+        return scanner.nextInt();
+    }
+
+    // Function to create a linked list
+    public static ListNode createList(Scanner scanner, int size, String message) {
+        System.out.println(message);
+        ListNode head = new ListNode();
+        ListNode list = head;
+        for (int i = 0; i < size; i++) {
+            list.next = new ListNode(scanner.nextInt());
+            list = list.next;
+        }
+        return head;
+    }
+
+    // Function to print elements of a linked list
+    public static void printList(ListNode head) {
+        while (head != null) {
+            System.out.print(head.val);
+            head = head.next;
         }
     }
-    public static ListNode addLists(ListNode list1,ListNode list2){
-        ListNode result  = new ListNode();
-        ListNode curr = result;
+
+    // Function to add reversed linked lists
+    public static ListNode addReversedLists(ListNode list1, ListNode list2) {
+        ListNode result = new ListNode();
+        ListNode current = result;
         int carry = 0;
 
-        while(list1 != null || list2 != null || carry == 1){
-            int sum = 0;
-            if(list1 != null){
+        // Iterate through both lists
+        while (list1 != null || list2 != null || carry == 1) {
+            int sum = carry;
+            if (list1 != null) {
                 sum += list1.val;
                 list1 = list1.next;
             }
-            if(list2 != null){
+            if (list2 != null) {
                 sum += list2.val;
                 list2 = list2.next;
             }
-            sum += carry;
-            curr.next = new ListNode(sum % 10);
+            // Update result and carry
+            current.next = new ListNode(sum % 10);
             carry = sum / 10;
-            curr = curr.next;
+            current = current.next;
         }
         return result.next;
     }
-
 }
