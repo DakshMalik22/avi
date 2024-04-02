@@ -1,72 +1,55 @@
 import java.util.ArrayList;
 
-class ArrayListOperations{
-    public static void main(String[] args){
-        ArrayList<String> colors = new ArrayList<String>(5);
-        //insert data in colors
+public class ArrayListOperations {
+    public static void main(String[] args) {
+        ArrayList<String> colors = new ArrayList<>(5);
+        // Insert data into the ArrayList
         colors.add("Red");
         colors.add("Green");
         colors.add("Blue");
-        colors.add("white");
-        colors.add("black");
+        colors.add("White");
+        colors.add("Black");
 
-        // iterate throught the colors
-        for(String color : colors)
+        // Iterate through the colors
+        for (String color : colors) {
             System.out.println(color);
+        }
 
-        // retrieve a specific element at index 0
-        System.out.println("element at index 0");
-        System.out.println(colors.get(0));
-        // retrieve a specific element at index 2
-        System.out.println("element at index 2");
-        System.out.println(colors.get(2));
+        // Retrieve a specific element at index 0
+        System.out.println("Element at index 0: " + colors.get(0));
+        // Retrieve a specific element at index 2
+        System.out.println("Element at index 2: " + colors.get(2));
 
-        // update an element by a given element
-        colors.set(2, "yellow");
-        System.out.println("when 3rd element replaced by yellow ");
-        for(String color : colors)
+        // Update an element at index 2 with "Yellow"
+        colors.set(2, "Yellow");
+        System.out.println("After replacing element at index 2 with Yellow:");
+        for (String color : colors) {
             System.out.println(color);
+        }
 
-        // remove 3rd element from list
+        // Remove the element at index 2
         colors.remove(2);
-        System.out.println("list after removal");
-        for(String color : colors)
+        System.out.println("After removing element at index 2:");
+        for (String color : colors) {
             System.out.println(color);
+        }
 
-        // search an element in list
+        // Search for an element in the list
         String searchElement = "Red";
-        for(String color : colors){
-            if(color.equals(searchElement))
-                System.out.println("Element found");
+        if (colors.contains(searchElement)) {
+            System.out.println("Element found: " + searchElement);
         }
 
-        // increase the size of list
-        colors.add("yellow");
-        System.out.println("list size: "+colors.size()+ " list capacity "+ getCapacity(colors));
-        // add an element so it dynamically increases its size
+        // Increase the size of the list
+        colors.add("Yellow");
+        System.out.println("After adding Yellow, list size: " + colors.size());
+
+        // Add another element to dynamically increase the size
         colors.add("Violet");
-        System.out.println("list size after another insertion");
-        System.out.println("list size: "+colors.size()+ " list capacity "+ getCapacity(colors));
+        System.out.println("After adding Violet, list size: " + colors.size());
 
-        //trim the list
+        // Trim the list
         colors.trimToSize();
-
         System.out.println("Size after trimming: " + colors.size());
-        System.out.println("Capacity after trimming: " + getCapacity(colors));
-
-
-    }
-
-    // Helper method to get the capacity of an ArrayList using reflection
-    private static int getCapacity(ArrayList<?> list) {
-        try {
-            java.lang.reflect.Field field = ArrayList.class.getDeclaredField("elementData");
-            field.setAccessible(true);
-            Object[] elementData = (Object[]) field.get(list);
-            return elementData.length;
-        } catch (NoSuchFieldException | IllegalAccessException e) {
-            e.printStackTrace();
-            return -1;
-        }
     }
 }
