@@ -1,38 +1,30 @@
 import java.util.Scanner;
-import java.util.Map;
 import java.util.HashMap;
+import java.util.Map;
 
 public class SubarraysWithkOnes {
 
     public static int countSubarraysWithKOnes(int[] arr, int k) {
         int count = 0;
-        int left = 0;
         int onesCount = 0;
         Map<Integer, Integer> frequencyMap = new HashMap<>();
 
-        for (int right = 0; right < arr.length; right++) {
-            // Update onesCount and frequencyMap
-            if (arr[right] == 1) {
+        for (int num : arr) {
+            if (num == 1) {
                 onesCount++;
             }
+
+            // If onesCount exceeds k, remove excess ones from the beginning
+            if (onesCount > k) {
+                onesCount--;
+                count -= frequencyMap.getOrDefault(onesCount - k, 0);
+            }
+
+            // Increment count for valid subarrays
+            count += frequencyMap.getOrDefault(onesCount - k, 0);
+
+            // Update frequency map
             frequencyMap.put(onesCount, frequencyMap.getOrDefault(onesCount, 0) + 1);
-
-            // If current count of ones is greater than k, move left pointer
-            while (onesCount > k) {
-                if (arr[left] == 1) {
-                    onesCount--;
-                }
-                frequencyMap.put(onesCount, frequencyMap.get(onesCount) - 1);
-                if (frequencyMap.get(onesCount) == 0) {
-                    frequencyMap.remove(onesCount);
-                }
-                left++;
-            }
-
-            // If current count of ones is equal to k, update count
-            if (onesCount == k) {
-                count += frequencyMap.getOrDefault(k, 0);
-            }
         }
 
         return count;
