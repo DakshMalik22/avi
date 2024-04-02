@@ -1,45 +1,34 @@
-import java.util.Scanner;
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.HashMap;
-import java.util.Arrays;
+import java.util.*;
 
 public class AnagramGroups {
-
+    
     public static List<List<String>> groupAnagrams(String[] inputStr) {
-        List<List<String>> result = new ArrayList<>();
         Map<String, List<String>> map = new HashMap<>();
-
-        // Group strings by their sorted versions
+        
         for (String str : inputStr) {
             char[] chars = str.toCharArray();
             Arrays.sort(chars);
             String sortedStr = new String(chars);
-            map.putIfAbsent(sortedStr, new ArrayList<>());
+            
+            if (!map.containsKey(sortedStr)) 
+                map.put(sortedStr, new ArrayList<>());
             map.get(sortedStr).add(str);
         }
-
-        // Add groups to result
-        for (List<String> group : map.values()) {
-            result.add(group);
-        }
-
-        return result;
+        
+        return new ArrayList<>(map.values());
     }
-
+    
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-
-        System.out.println("Enter strings separated by spaces");
-        String[] inputStr = scanner.nextLine().split(" ");
-        List<List<String>> result = groupAnagrams(inputStr);
-        for (List<String> group : result) {
-            for (String str : group) {
-                System.out.print(str + " ");
-            }
-            System.out.println();
+        String[] inputStr1 = {"abab", "baba", "aabb", "abbc"};
+        List<List<String>> result1 = groupAnagrams(inputStr1);
+        for (List<String> group : result1) {
+            System.out.println(group);
+        }
+        
+        String[] inputStr2 = {"aecd", "bcda", "acbd", "abdc", "acda"};
+        List<List<String>> result2 = groupAnagrams(inputStr2);
+        for (List<String> group : result2) {
+            System.out.println(group);
         }
     }
 }
