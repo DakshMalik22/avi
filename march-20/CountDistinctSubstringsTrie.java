@@ -1,52 +1,53 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
-import java.util.Scanner;
 
-//Node of Trie
-class TrieNode{
+// Node of Trie
+class TrieNode {
     TrieNode[] children;
     boolean isEnd;
-    TrieNode(){
-        children = new TrieNode[26];
+
+    TrieNode() {
+        children = new TrieNode[26]; // Assuming lowercase English letters only
         isEnd = false;
     }
 }
 
-//Trie class
-class Trie{
+// Trie class
+class Trie {
     TrieNode root;
 
-    //constructor
-    Trie(){
+    // Constructor
+    Trie() {
         this.root = new TrieNode();
     }
 
-    //method to insert string in trie
-    public void insert(String str){
+    // Method to insert string into trie
+    public void insert(String str) {
         TrieNode current = root;
-        for(char strCharacter : str.toCharArray() ){
-            int index = strCharacter - 'a';
-            if(current.children[index] == null){
+        for (char ch : str.toCharArray()) {
+            int index = ch - 'a'; // Convert character to index
+            if (current.children[index] == null) {
                 current.children[index] = new TrieNode();
             }
             current = current.children[index];
         }
-        current.isEnd = true;
+        current.isEnd = true; // Mark end of word
     }
 
-    //wrapper method around countNodes
-    public int countNodes(){
+    // Wrapper method around countNodes
+    public int countNodes() {
         return countNodes(root);
     }
-    //method to count nodes in trie
-    public int countNodes(TrieNode root){
+
+    // Method to count nodes in trie
+    public int countNodes(TrieNode root) {
         int count = 0;
-        if(root == null){
+        if (root == null) {
             return count;
         }
-        ++count; // count the current TrieNode
-        for(int i = 0; i < 26; i++){
-            if(root.children[i] != null){
+        ++count; // Count the current TrieNode
+        for (int i = 0; i < 26; i++) {
+            if (root.children[i] != null) {
                 count += countNodes(root.children[i]);
             }
         }
@@ -54,27 +55,25 @@ class Trie{
     }
 }
 
-
-
-
-public class CountDistinctSubstringsTrie {
-    public static void main(String[] args){
+public class DistinctSubstringsCounter {
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the string:");
+        System.out.println("Please enter the string:");
         try {
-            String inputString = scanner.next();
+            String input = scanner.next();
             Trie trie = new Trie();
-            // insert every substring of inputString in trie
-            for(int i = 0; i < inputString.length(); ++i){
-                for(int j = i+1; j <= inputString.length(); ++j){
-                    trie.insert(inputString.substring(i, j));
+            // Insert every substring of input into trie
+            for (int i = 0; i < input.length(); ++i) {
+                for (int j = i + 1; j <= input.length(); ++j) {
+                    trie.insert(input.substring(i, j));
                 }
             }
-            System.out.println(trie.countNodes());
+            System.out.println("Number of distinct substrings: " + trie.countNodes());
             // Rest of the code
         } catch (InputMismatchException e) {
             System.out.println("Invalid input. Please enter a valid string.");
+        } finally {
+            scanner.close(); // Close scanner
         }
-        scanner.close();
     }
 }
