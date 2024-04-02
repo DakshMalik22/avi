@@ -1,38 +1,41 @@
 import java.util.HashMap;
-import java.util.Map;
-import java.util.Scanner;
 
-public class LongestSubstringDistinctK {
-    public static int longestSubstringLength(String S, int K) {
+public class LongestSubstringWithKDistinctCharacters {
+    
+    public static int longestSubstringLength(String s, int k) {
+        if (s == null || s.length() == 0 || k == 0) 
+            return 0;
+        
+        int[] count = new int[256];
+        int numDistinct = 0;
+        int start = 0;
         int maxLength = 0;
-        Map<Character, Integer> charCount = new HashMap<>();
-        int left = 0;
-
-        for (int right = 0; right < S.length(); right++) {
-            char c = S.charAt(right);
-            charCount.put(c, charCount.getOrDefault(c, 0) + 1);
-
-            while (charCount.size() > K) {
-                char leftChar = S.charAt(left);
-                charCount.put(leftChar, charCount.get(leftChar) - 1);
-                if (charCount.get(leftChar) == 0) {
-                    charCount.remove(leftChar);
-                }
-                left++;
+        
+        for (int end = 0; end < s.length(); end++) {
+            if (count[s.charAt(end)] == 0) 
+                numDistinct++;
+            count[s.charAt(end)]++;
+            
+            while (numDistinct > k) {
+                count[s.charAt(start)]--;
+                if (count[s.charAt(start)] == 0) 
+                    numDistinct--;
+                start++;
             }
-
-            maxLength = Math.max(maxLength, right - left + 1);
+            
+            maxLength = Math.max(maxLength, end - start + 1);
         }
-
+        
         return maxLength;
     }
-
+    
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter value of k:");
-        int k = scanner.nextInt();
-        String S = scanner.next();
-        System.out.println(longestSubstringLength(S, k));
-        scanner.close();
+        String s1 = "abcba";
+        int k1 = 2;
+        System.out.println(longestSubstringLength(s1, k1)); // Output: 3
+        
+        String s2 = "abccc";
+        int k2 = 1;
+        System.out.println(longestSubstringLength(s2, k2)); // Output: 3
     }
 }
