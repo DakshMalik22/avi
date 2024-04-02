@@ -1,6 +1,6 @@
 import java.util.HashMap;
 
-public class LongestSubstringWithKDistinctCharacters {
+public class LongestSubstringDistinctK {
     
     public static int longestSubstringLength(String s, int k) {
         if (s == null || s.length() == 0 || k == 0) 
