@@ -1,43 +1,30 @@
 import java.util.Arrays;
-import java.util.Scanner;
 
 public class MedianOfSortedMatrix {
-
+    
     public static int findMedian(int[][] matrix) {
-        int rowCount = matrix.length;
-        int colCount = matrix[0].length;
-
-        // Flatten the matrix into a 1D array
-        int[] flattened = new int[rowCount * colCount];
+        int rows = matrix.length;
+        int cols = matrix[0].length;
+        
+        int[] merged = new int[rows * cols];
         int index = 0;
-        for (int i = 0; i < rowCount; i++) {
-            for (int j = 0; j < colCount; j++) {
-                flattened[index++] = matrix[i][j];
+        
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                merged[index++] = matrix[i][j];
             }
         }
-
-        // Sort the flattened array
-        Arrays.sort(flattened);
-
-        // Find the median
-        int medianIndex = flattened.length / 2;
-        return flattened[medianIndex];
+        
+        Arrays.sort(merged);
+        
+        return merged[(rows * cols) / 2];
     }
-    public static void main(String[] args){
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter rows in matrix:");
-        int rows = scanner.nextInt();
-        System.out.println("Enter columns in matrix:");
-        int columns = scanner.nextInt();
-        int[][] matrix = new int[rows][columns];
-        for (int i = 0; i < rows; i++){
-            for(int j = 0; j < columns; j++){
-                matrix[i][j] = scanner.nextInt();
-            }
-        }
-
-            System.out.println(findMedian(matrix));
-
-        scanner.close();
+    
+    public static void main(String[] args) {
+        int[][] matrix1 = {{1, 3, 5}, {2, 6, 9}, {3, 6, 9}};
+        System.out.println(findMedian(matrix1)); // Output: 5
+        
+        int[][] matrix2 = {{5}, {1, 3}, {1, 4, 6}};
+        System.out.println(findMedian(matrix2)); // Output: 4
     }
 }
