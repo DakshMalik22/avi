@@ -1,8 +1,8 @@
 import java.util.HashMap;
 
-public class FourSum {
+public class QuadrupletChecker {
 
-    public static String checkFourSum(int[] nums, int target) {
+    public static String checkQuadruplet(int[] nums, int target) {
         int n = nums.length;
 
         // Create a HashMap to store the sum of pairs of elements and their indices
@@ -38,15 +38,15 @@ public class FourSum {
 
     public static void main(String[] args) {
         int[][] testCases = {
-                {1, 3, 3, 10, 2},
-                {2, 4, 6, 3, 1, 1},
-                {0, 10, 1, 2, 2},
-                {-2, 12, -1, 1, 20, 1}
+                {1, 2, 3, 4, 5, 6},
+                {2, 4, 6, 8, 10, 12},
+                {3, 6, 9, 12, 15, 18},
+                {4, 8, 12, 16, 20, 24}
         };
-        int[] targets = {9, 20, 15, 20};
+        int[] targets = {12, 24, 30, 32};
 
         for (int i = 0; i < testCases.length; i++) {
-            System.out.println("Test case " + (i + 1) + ": " + checkFourSum(testCases[i], targets[i]));
+            System.out.println("Test " + (i + 1) + ": " + checkQuadruplet(testCases[i], targets[i]));
         }
     }
 }
