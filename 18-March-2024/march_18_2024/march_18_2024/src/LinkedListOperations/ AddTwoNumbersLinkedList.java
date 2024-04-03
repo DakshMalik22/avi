@@ -6,7 +6,7 @@ class ListNode {
         this.val = val;
     }
 }
-
+//adding two number
 public class AddTwoNumbersLinkedList {
     public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
         ListNode dummy = new ListNode(0);
