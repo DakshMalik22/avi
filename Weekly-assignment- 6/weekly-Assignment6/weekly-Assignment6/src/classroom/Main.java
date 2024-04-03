@@ -18,9 +18,9 @@ public class Main {
 
         do {
             System.out.println("Select your role:");
-            System.out.println("1. Student");
-            System.out.println("2. Admin");
-            System.out.println("0. Exit");
+            System.out.println("1. Student.");
+            System.out.println("2. Admin.");
+            System.out.println("0. Exit.");
 
             char roleChoice = scanner.next().charAt(0);
 
