@@ -1,5 +1,5 @@
 import java.util.Arrays;
-
+//counting smaller elements
 public class CountSmallerElements {
 
     public static int[] countSmallerElements(int[] arr) {
