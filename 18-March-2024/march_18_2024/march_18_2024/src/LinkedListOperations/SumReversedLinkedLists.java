@@ -18,7 +18,7 @@ class SumReversedLinkedLists {
         printList(resultList);
     }
 
-    // Function to get user input
+  
     public static int getUserInput(Scanner scanner, String message) {
         System.out.println(message);
         return scanner.nextInt();
