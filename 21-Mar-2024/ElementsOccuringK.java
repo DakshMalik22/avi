@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
+//counting elements occurance
 public class ElementsOccuringK {
     public static void main(String[] args) {
         int[][] arrays = {{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, {5, 5, 5, 5, 5, 5, 6, 6, 6}};
