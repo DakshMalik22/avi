@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class SubarraySumCounter {
     public static void main(String[] args) {
+        //taking input from user
         Scanner scanner = new Scanner(System.in);
         System.out.println("Please enter the size of the array:");
         int size = scanner.nextInt();
