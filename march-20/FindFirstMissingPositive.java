@@ -13,7 +13,7 @@ public class FindFirstMissingPositive {
         System.out.println("First missing positive number:");
         System.out.println(findFirstMissingPositive(array));
     }
-
+// missing positive number 
     public static int findFirstMissingPositive(int[] nums) {
         // Cycle sort
         int i = 0;
