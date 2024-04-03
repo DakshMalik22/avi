@@ -1,5 +1,5 @@
 import java.util.HashMap;
-
+// function for  LongestSubstringDistinctK
 public class LongestSubstringDistinctK {
     
     public static int longestSubstringLength(String s, int k) {
