@@ -10,8 +10,8 @@ public class Main{
     public static void main(String[] args){
         Scanner scanner = new Scanner(System.in);
         int taskIdCount = 0;
-        final String studentLoginFilePath = "/home/himanshu/Desktop/Avisoft/java/Weekly-Assignment6/src/database/studentLoginFile.csv";
-        final String adminLoginFilePath = "/home/himanshu/Desktop/Avisoft/java/Weekly-Assignment6/src/database/adminLoginFile.csv";
+        final String adminLoginFilePath studentLoginFilePath = "C:\Users\ASUS\Downloads\weekly-Assignment6\weekly-Assignment6\out\production\Weekly-Assignment6\database\adminLoginFile.csv";
+        final String studentLoginFilePath = "C:\Users\ASUS\Downloads\weekly-Assignment6\weekly-Assignment6\out\production\Weekly-Assignment6\database\studentLoginFile.csv";
         List<User> studentList = new ArrayList<User>();
         List<Course> coursesList = new ArrayList<Course>();
         User student = null;
