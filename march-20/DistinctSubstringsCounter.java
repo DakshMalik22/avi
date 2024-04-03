@@ -1,7 +1,7 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-// Node of Trie
+
 class TrieNode {
     TrieNode[] children;
     boolean isEnd;
