@@ -6,7 +6,7 @@ class ListNode {
         this.val = val;
     }
 }
-
+//removing duplicates from linklist
 public class RemoveDuplicatesLinkedList {
     public ListNode removeDuplicates(ListNode head) {
         if (head == null) return null;
