@@ -1,7 +1,7 @@
 import java.util.Scanner;
 import java.util.HashMap;
 import java.util.Map;
-
+//counting subaarays
 public class SubarraysWithkOnes {
 
     public static int countSubarraysWithKOnes(int[] arr, int k) {
