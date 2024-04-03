@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
-
+//matching string pattern
 public class StringPatternMatching {
     
     public static List<Integer> findPatternOccurrences(String text, String pattern) {
