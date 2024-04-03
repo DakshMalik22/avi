@@ -20,7 +20,7 @@ public class MinimumPreprocessingMoves {
             return -1; // Strings need to be of equal length
         }
         
-        // Arrays to store count of each character in strings A and B
+       
         int[] charCountA = new int[26];
         int[] charCountB = new int[26];
 
