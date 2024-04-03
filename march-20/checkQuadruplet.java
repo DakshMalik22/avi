@@ -3,6 +3,7 @@ import java.util.HashMap;
 public class QuadrupletChecker {
 
     public static String checkQuadruplet(int[] nums, int target) {
+       //length of array
         int n = nums.length;
 
         // Create a HashMap to store the sum of pairs of elements and their indices
