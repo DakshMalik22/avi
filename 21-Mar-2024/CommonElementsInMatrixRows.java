@@ -11,8 +11,8 @@ public class CommonElementsInMatrixRows {
         List<Integer> result1 = findCommonElements(matrix1);
         List<Integer> result2 = findCommonElements(matrix2);
 
-        System.out.println("Common elements in matrix1: " + result1); // Output: [2]
-        System.out.println("Common elements in matrix2: " + result2); // Output: []
+        System.out.println("Common elements in matrix1: " + result1); 
+        System.out.println("Common elements in matrix2: " + result2); 
     }
 
     public static List<Integer> findCommonElements(int[][] matrix) {
