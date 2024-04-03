@@ -1,41 +1,43 @@
 package classroom;
 
-//imports
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-public class Main{
 
+public class Main {
 
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int taskIdCount = 0;
-        final String adminLoginFilePath studentLoginFilePath = "C:\Users\ASUS\Downloads\weekly-Assignment6\weekly-Assignment6\out\production\Weekly-Assignment6\database\adminLoginFile.csv";
-        final String studentLoginFilePath = "C:\Users\ASUS\Downloads\weekly-Assignment6\weekly-Assignment6\out\production\Weekly-Assignment6\database\studentLoginFile.csv";
-        List<User> studentList = new ArrayList<User>();
-        List<Course> coursesList = new ArrayList<Course>();
+        final String adminLoginFilePath = "C:\\Users\\ASUS\\Downloads\\weekly-Assignment6\\weekly-Assignment6\\out\\production\\Weekly-Assignment6\\database\\adminLoginFile.csv";
+        final String studentLoginFilePath = "C:\\Users\\ASUS\\Downloads\\weekly-Assignment6\\weekly-Assignment6\\out\\production\\Weekly-Assignment6\\database\\studentLoginFile.csv";
+        List<User> studentList = new ArrayList<>();
+        List<Course> coursesList = new ArrayList<>();
         User student = null;
         User admin = null;
-        do{
-            System.out.println("Press 1: To continue as a student.");
-            System.out.println("Press 2: To continue as an admin");
-            System.out.println("Press 0: To exit...");
 
-            char choice = scanner.next().charAt(0);
+        do {
+            System.out.println("Select your role:");
+            System.out.println("1. Student");
+            System.out.println("2. Admin");
+            System.out.println("0. Exit");
 
-            switch(choice){
+            char roleChoice = scanner.next().charAt(0);
+
+            switch (roleChoice) {
                 case '1':
                     do {
-                        System.out.println("Press 1: To login.");
-                        System.out.println("Press 2: To join a course.");
-                        System.out.println("Press 3: To display all tasks.");
-                        System.out.println("Press 4: To submit a task.");
-                        System.out.println("Press 0: To logout.");
+                        System.out.println("\nStudent Menu:");
+                        System.out.println("1. Login");
+                        System.out.println("2. Join a course");
+                        System.out.println("3. Display all tasks");
+                        System.out.println("4. Submit a task");
+                        System.out.println("0. Logout");
 
                         char studentChoice = scanner.next().charAt(0);
-                        switch(studentChoice){
+                        switch (studentChoice) {
                             case '1':
-                                if(student == null) {
+                                if (student == null) {
                                     String studentEmail;
                                     System.out.println("Enter your email: ");
                                     while (true) {
@@ -43,55 +45,54 @@ public class Main{
                                         if (InputValidator.validateEmail(studentEmail)) {
                                             break;
                                         }
-                                        System.out.println("Enter valid email:");
+                                        System.out.println("Please enter a valid email:");
                                     }
-                                    System.out.println("Enter your password");
+                                    System.out.println("Enter your password:");
                                     String password = scanner.next();
                                     student = LoginManager.login(studentEmail, password, studentLoginFilePath);
-                                }else
-                                    System.out.println("Already logged in. Logout First.");
+                                } else
+                                    System.out.println("Already logged in. Please logout first.");
                                 break;
                             case '2':
-                                if(student == null){
-                                System.out.println("Login first.");
-                                break;
+                                if (student == null) {
+                                    System.out.println("Please login first.");
+                                    break;
                                 }
-                                System.out.println("Select a course:");
+                                System.out.println("Choose a course to join:");
                                 System.out.println("1. Java Course");
                                 System.out.println("2. Python Course");
-                                System.out.println("3. Mern Course");
+                                System.out.println("3. MERN Course");
                                 int courseChoice = scanner.nextInt();
                                 Course courseToJoin = null;
-                                switch(courseChoice){
+                                switch (courseChoice) {
                                     case 1:
-                                        courseToJoin = new JavaCourse("javaCourse");
+                                        courseToJoin = new JavaCourse("Java Course");
                                         break;
                                     case 2:
-                                        courseToJoin = new PythonCourse("pythonCourse");
+                                        courseToJoin = new PythonCourse("Python Course");
                                         break;
                                     case 3:
-                                        courseToJoin = new MernCourse("mernCourse");
+                                        courseToJoin = new MernCourse("MERN Course");
                                         break;
-
                                     default:
-                                        System.out.println("Enter valid input");
+                                        System.out.println("Invalid input");
                                 }
-                                CourseManager.joinCourse(coursesList , student, studentList, courseToJoin);
+                                CourseManager.joinCourse(coursesList, student, studentList, courseToJoin);
                                 break;
                             case '3':
-                                if(student == null){
-                                    System.out.println("Login first.");
+                                if (student == null) {
+                                    System.out.println("Please login first.");
                                     break;
                                 }
                                 TaskManager.displayAllTasksOfStudent(student, studentList);
                                 break;
                             case '4':
-                                if(student == null){
-                                    System.out.println("Login first.");
+                                if (student == null) {
+                                    System.out.println("Please login first.");
                                     break;
                                 }
-                                if(TaskManager.displayAllTasksOfStudent(student,studentList)) {
-                                    System.out.println("Enter the id of task to submit:");
+                                if (TaskManager.displayAllTasksOfStudent(student, studentList)) {
+                                    System.out.println("Enter the ID of the task to submit:");
                                     int submitTaskId = scanner.nextInt();
                                     TaskManager.submitTask(student, submitTaskId, studentList);
                                 }
@@ -100,67 +101,65 @@ public class Main{
                                 student = null;
                                 break;
                             default:
-                                System.out.println("Enter valid input");
+                                System.out.println("Invalid choice");
                         }
-                    }
-                    while(student != null);
+                    } while (student != null);
                     break;
                 case '2':
-                    do{
-                        System.out.println("Press 1: To login.");
-                        System.out.println("Press 2: To make a course.");
-                        System.out.println("Press 3: To add a Task.");
-                        System.out.println("Press 0: To log out.");
+                    do {
+                        System.out.println("\nAdmin Menu:");
+                        System.out.println("1. Login");
+                        System.out.println("2. Create a course");
+                        System.out.println("3. Add a task");
+                        System.out.println("0. Logout");
 
                         char adminChoice = scanner.next().charAt(0);
 
-                        switch (adminChoice){
+                        switch (adminChoice) {
                             case '1':
-                                if(admin == null){
-                                    String studentEmail;
+                                if (admin == null) {
+                                    String adminEmail;
                                     System.out.println("Enter your email: ");
                                     while (true) {
-                                        studentEmail = scanner.next();
-                                        if (InputValidator.validateEmail(studentEmail)) {
+                                        adminEmail = scanner.next();
+                                        if (InputValidator.validateEmail(adminEmail)) {
                                             break;
                                         }
-                                        System.out.println("Enter valid email:");
+                                        System.out.println("Please enter a valid email:");
                                     }
-                                    System.out.println("Enter your password");
+                                    System.out.println("Enter your password:");
                                     String password = scanner.next();
-                                    admin = LoginManager.login(studentEmail, password, adminLoginFilePath);
-                                }else
-                                    System.out.println("Already logged in. Logout First.");
+                                    admin = LoginManager.login(adminEmail, password, adminLoginFilePath);
+                                } else
+                                    System.out.println("Already logged in. Please logout first.");
                                 break;
                             case '2':
-                                if(admin == null){
-                                    System.out.println("Login first.");
+                                if (admin == null) {
+                                    System.out.println("Please login first.");
                                     break;
                                 }
-                                System.out.println("Select from below courses:");
-                                System.out.println("Press 1 : For Java course.");
-                                System.out.println("Press 2 : For Python course.");
-                                System.out.println("Press 3 : For Mern course");
-
-                                char courseChoice = scanner.next().charAt(0);
-
-                                switch(courseChoice){
-                                    case '1':
-                                        CourseManager.createCourse(coursesList, new JavaCourse("javaCourse"));;
+                                System.out.println("Choose a course to create:");
+                                System.out.println("1. Java Course");
+                                System.out.println("2. Python Course");
+                                System.out.println("3. MERN Course");
+                                int courseChoice = scanner.nextInt();
+                                switch (courseChoice) {
+                                    case 1:
+                                        CourseManager.createCourse(coursesList, new JavaCourse("Java Course"));
                                         break;
-                                    case '2':
-                                        CourseManager.createCourse(coursesList, new PythonCourse("pythonCourse"));;
+                                    case 2:
+                                        CourseManager.createCourse(coursesList, new PythonCourse("Python Course"));
                                         break;
-                                    case '3':
-                                        CourseManager.createCourse(coursesList, new MernCourse("mernCourse"));;
+                                    case 3:
+                                        CourseManager.createCourse(coursesList, new MernCourse("MERN Course"));
                                         break;
                                     default:
-                                        System.out.println("Wrong choice selected");
+                                        System.out.println("Invalid input");
                                 }
                                 break;
                             case '3':
-                                if(admin == null){
-                                    System.out.println("Login first.");
+                                if (admin == null) {
+                                    System.out.println("Please login first.");
                                     break;
                                 }
                                 Task newTask = TaskManager.createTask(++taskIdCount);
@@ -170,18 +169,18 @@ public class Main{
                                 admin = null;
                                 break;
                             default:
-                                System.out.println("Enter valid choice");
+                                System.out.println("Invalid choice");
                         }
 
-                    }while(admin != null);
+                    } while (admin != null);
                     break;
                 case '0':
                     System.exit(0);
                     break;
                 default:
-                    System.out.println("Enter a valid choice.");
+                    System.out.println("Invalid choice.");
             }
 
-        }while(true);
+        } while (true);
     }
 }
