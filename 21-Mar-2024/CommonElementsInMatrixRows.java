@@ -5,8 +5,8 @@ import java.util.Set;
 
 public class CommonElementsInMatrixRows {
     public static void main(String[] args) {
-        int[][] matrix1 = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
-        int[][] matrix2 = {{2, 4, 6}, {3, 5, 7}, {1, 8, 9}};
+        int[][] matrix1 = {{1, 2, 3}, {4, 5, 6}, {7, 8, 7}};
+        int[][] matrix2 = {{2, 4, 6}, {3, 5, 7}, {1, 8, 7}};
 
         List<Integer> result1 = findCommonElements(matrix1);
         List<Integer> result2 = findCommonElements(matrix2);
